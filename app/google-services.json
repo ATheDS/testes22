@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "862741058866",
+    "project_id": "maisestudo-411d8",
+    "storage_bucket": "maisestudo-411d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862741058866:android:312303ac397de4a1ca732b",
+        "android_client_info": {
+          "package_name": "com.example.testes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862741058866-lea4vuv40902c8mseb2hbhm447e10luq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFSxvETQS5qv49mImMsGRmk5F1qhJQUnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862741058866-lea4vuv40902c8mseb2hbhm447e10luq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
