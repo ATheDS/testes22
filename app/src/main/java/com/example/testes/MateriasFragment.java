@@ -1,5 +1,6 @@
 package com.example.testes;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +29,8 @@ public class MateriasFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Aluno aluno;
+    private Button editar;
 
     public MateriasFragment() {
         // Required empty public constructor
@@ -53,6 +61,25 @@ public class MateriasFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        if(FirebaseAuth.getInstance().getCurrentUser().getEmail()=="rafaeldinizsoaresreal@gmail.com"){
+            Aluno adm = new Aluno();
+            adm.setAdm(true);
+
+        }
+        editar = getActivity().findViewById(R.id.editar);
+        editar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Objects.equals(FirebaseAuth.getInstance().getCurrentUser().getEmail(), "rafaeldinizsoaresreal@gmail.com")){
+                    Intent intent = new Intent(getActivity(),EditarActivity.class);
+
+                }
+
+
+            }
+        });
+
+
     }
 
     @Override

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,6 +39,7 @@ public class PerfilFragment extends Fragment {
     private String mParam2;
     public ImageButton editar;
     public TextView emailtext,nometext,cursotext,turnotext;
+    private Aluno aluno;
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -88,9 +90,29 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot !=null){
-                    nometext.setText(documentSnapshot.getString("nome"));
-                    cursotext.setText(documentSnapshot.getString("curso"));
-                    turnotext.setText(documentSnapshot.getString("turno"));
+                    String nome = documentSnapshot.getString("nome");
+                    String turno = documentSnapshot.getString("turno");
+                    String cursos = documentSnapshot.getString("curso");
+
+
+                    nometext.setText(nome);
+                    cursotext.setText(cursos);
+                    turnotext.setText(turno);
+
+                    aluno = new Aluno();
+                    aluno.setNome(nome);
+                    aluno.setTurno(turno);
+
+                    aluno.setCursos(cursos);
+                    if(documentSnapshot.getBoolean("adm") == true){
+                        Log.d("tag","é true");
+
+                    }
+                    else{
+                        Log.d("tag","not true");
+
+                    }
+
 
                 }
             }
@@ -103,8 +125,8 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),EditarActivity.class);
+                intent.putExtra("aluno", aluno);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
@@ -120,8 +142,5 @@ public class PerfilFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
+
 }

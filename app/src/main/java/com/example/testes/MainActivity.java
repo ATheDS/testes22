@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
 
                                 if(checkbox.equals("true")){
+
                                     home();
 
 
