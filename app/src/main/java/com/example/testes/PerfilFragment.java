@@ -5,10 +5,13 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import java.util.List;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import java.util.ArrayList;
+
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -40,6 +43,9 @@ public class PerfilFragment extends Fragment {
     public ImageButton editar;
     public TextView emailtext,nometext,cursotext,turnotext;
     private Aluno aluno;
+    private List AdmList;
+    private UserList Users;
+
 
     public PerfilFragment() {
         // Required empty public constructor
@@ -70,6 +76,14 @@ public class PerfilFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if (bundle != null) {
+
+
+            AdmList = (List) bundle.get("aList");
+            Users = (UserList) bundle.get("Users");
+
+        }
 
 
     }
@@ -78,6 +92,12 @@ public class PerfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view  = inflater.inflate(R.layout.fragment_perfil, container, false);
         String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+
+
+
+
+
         emailtext = view.findViewById(R.id.emailtextview);
         nometext = view.findViewById(R.id.nometextview);
         turnotext = view.findViewById(R.id.turnotextview);
@@ -90,9 +110,14 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                 if(documentSnapshot !=null){
+
                     String nome = documentSnapshot.getString("nome");
                     String turno = documentSnapshot.getString("turno");
                     String cursos = documentSnapshot.getString("curso");
+                    if(AdmList.contains(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
+                        Log.d("tag","Contem");
+
+                    }
 
 
                     nometext.setText(nome);
@@ -103,15 +128,25 @@ public class PerfilFragment extends Fragment {
                     aluno.setNome(nome);
                     aluno.setTurno(turno);
 
-                    aluno.setCursos(cursos);
-                    if(documentSnapshot.getBoolean("adm") == true){
-                        Log.d("tag","é true");
+                    aluno.setCursos(Integer.parseInt(cursos));
+                    Users.add(aluno);
+                    Users.setCursosFeitos(0,43);
+
+                    if(documentSnapshot.getBoolean("adm") != null){
+                        if(documentSnapshot.getBoolean("adm") == true){
+                            Log.d("tag","é true");
+                        }else{
+                            Log.d("tag",documentSnapshot.getBoolean("adm").toString());
+
+                        }
+
+
+                    }else{
+                        Log.d("tag",Users.getAlunoAtIndex(0).getNome());
+
 
                     }
-                    else{
-                        Log.d("tag","not true");
 
-                    }
 
 
                 }

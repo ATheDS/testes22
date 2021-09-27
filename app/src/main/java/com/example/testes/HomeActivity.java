@@ -16,7 +16,7 @@ import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Home extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
     private TabItem btn_perfil,btn_agenda, btn_materias;
     private TextView nome, email,cursos,turno;
 

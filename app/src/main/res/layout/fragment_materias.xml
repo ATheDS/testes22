@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:background="@color/white"
+        android:background="@drawable/card"
+        android:padding="10dp"
         android:orientation="vertical"
          >
         <TextView
@@ -48,33 +49,37 @@
         <LinearLayout
             android:padding="2dp"
 
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:textColor="@color/black"
                 android:text="Atividades Feitas"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/atividadesfeitas"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mario C Filho"
                 android:textColor="@color/black"
                 />
 
-            <Button
-                android:id="@+id/editar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Editar"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/lightblue"
-                />
+
 
         </LinearLayout>
+        <Button
+            android:id="@+id/editarmaterias"
+            android:layout_width="wrap_content"
+            android:layout_gravity="end"
+
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightblue"
+            android:text="Editar"
+            android:textColor="@color/white" />
+
+
 
 
 

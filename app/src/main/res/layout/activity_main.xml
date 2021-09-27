@@ -61,7 +61,7 @@
             android:text="Lembra-se de mim"
             android:textColor="@color/white"
             android:buttonTint="@color/white"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="4dp"
             />
 
 
@@ -74,13 +74,14 @@
             android:orientation="horizontal"
             >
 
-            <Button
+            <TextView
                 android:layout_weight="1"
                 android:id="@+id/button1"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:text="Esqueci Minha Senha"
-                android:textSize="7sp"
+                android:textSize="12sp"
+                android:textColor="@color/white"
                 android:shadowRadius="0"
                 android:layout_marginHorizontal="10dp"
                 android:backgroundTint="@color/trans"

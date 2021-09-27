@@ -46,8 +46,7 @@ public class EditarActivity extends AppCompatActivity {
 
         salvar.setOnClickListener(view -> {
             salvardados();
-            Intent intent = new Intent(EditarActivity.this,Home.class);
-            startActivity(intent);
+
             finish();
         });
 
@@ -97,7 +96,7 @@ public class EditarActivity extends AppCompatActivity {
         if (aluno != null) {
             editnome.setText(aluno.getNome());
             editturno.setText(aluno.getTurno());
-            editcursos.setText(aluno.getCursos());
+            editcursos.setText(aluno.getCursos().toString());
         }
     }
 }

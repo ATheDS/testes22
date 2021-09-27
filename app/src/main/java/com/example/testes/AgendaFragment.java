@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class AgendaFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
 
     public AgendaFragment() {
         // Required empty public constructor
@@ -63,6 +65,8 @@ public class AgendaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Calendar cal = Calendar.getInstance();
+
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_agenda, container, false);

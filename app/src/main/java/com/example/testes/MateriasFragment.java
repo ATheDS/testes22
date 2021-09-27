@@ -5,14 +5,18 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Objects;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +34,7 @@ public class MateriasFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private Aluno aluno;
-    private Button editar;
+    private List AdmList;
 
     public MateriasFragment() {
         // Required empty public constructor
@@ -61,23 +65,9 @@ public class MateriasFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        if(FirebaseAuth.getInstance().getCurrentUser().getEmail()=="rafaeldinizsoaresreal@gmail.com"){
-            Aluno adm = new Aluno();
-            adm.setAdm(true);
-
-        }
-        editar = getActivity().findViewById(R.id.editar);
-        editar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(Objects.equals(FirebaseAuth.getInstance().getCurrentUser().getEmail(), "rafaeldinizsoaresreal@gmail.com")){
-                    Intent intent = new Intent(getActivity(),EditarActivity.class);
-
-                }
 
 
-            }
-        });
+
 
 
     }
@@ -85,7 +75,44 @@ public class MateriasFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+        View view  = inflater.inflate(R.layout.fragment_materias, container, false);
+        Bundle bundle = getActivity().getIntent().getExtras();
+        if (bundle != null) {
+
+
+            AdmList = (List) bundle.get("aList");
+        }
+        Button editarm = view.findViewById(R.id.editarmaterias);
+        if(!AdmList.contains(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
+            editarm.setVisibility(View.GONE);
+
+        }
+        editarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                    Intent intent = new Intent(getActivity(),EditMateriasActivity.class);
+                    startActivity(intent);
+
+
+                }
+
+
+
+
+        });
+
+
+
+
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_materias, container, false);
+        return view;
     }
 }
