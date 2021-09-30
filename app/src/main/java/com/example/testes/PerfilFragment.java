@@ -132,20 +132,17 @@ public class PerfilFragment extends Fragment {
 
 
                         aluno.setTurno(turno);
+                        if(cursos != null){
+                            aluno.setCursos(Integer.parseInt(cursos));
+
+                        }
 
 
 
 
-                    if(cursotext != null){
-                        aluno.setCursos(Integer.parseInt(cursos));
-
-
-
-                    }
 
 
                     Users.add(aluno);
-                    Users.setCursosFeitos(0,43);
 
 
 

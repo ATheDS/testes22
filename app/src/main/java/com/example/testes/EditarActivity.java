@@ -1,5 +1,6 @@
 package com.example.testes;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -89,6 +90,7 @@ public class EditarActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void iniciarcomponentes(){
         cursostextview = findViewById(R.id.cursostextview);
         turnotextview = findViewById(R.id.turnotextview);
@@ -101,7 +103,10 @@ public class EditarActivity extends AppCompatActivity {
         if (aluno != null) {
             editnome.setText(aluno.getNome());
             editturno.setText(aluno.getTurno());
-            editcursos.setText(String.format(Locale.getDefault(),"%d",aluno.getCursos()));
+        }
+        if(aluno.getCursos()!= null){
+            editcursos.setText(aluno.getCursosString());
+
         }
     }
 }
