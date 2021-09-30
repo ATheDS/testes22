@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class EditarActivity extends AppCompatActivity {
@@ -66,15 +67,19 @@ public class EditarActivity extends AppCompatActivity {
             Usuarios.put("curso", curso);
 
 
+
         }
         if (!nome.isEmpty()) {
             Usuarios.put("nome", nome);
+
         }
 
         if (!turno.isEmpty()) {
             Usuarios.put("turno", turno);
 
+
         }
+
         DocumentReference documentReference = db.collection("usuarios").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
         documentReference.set(Usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -96,7 +101,7 @@ public class EditarActivity extends AppCompatActivity {
         if (aluno != null) {
             editnome.setText(aluno.getNome());
             editturno.setText(aluno.getTurno());
-            editcursos.setText(aluno.getCursos().toString());
+            editcursos.setText(String.format(Locale.getDefault(),"%d",aluno.getCursos()));
         }
     }
 }

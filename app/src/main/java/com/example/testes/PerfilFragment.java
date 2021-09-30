@@ -125,27 +125,29 @@ public class PerfilFragment extends Fragment {
                     turnotext.setText(turno);
 
                     aluno = new Aluno();
-                    aluno.setNome(nome);
-                    aluno.setTurno(turno);
 
-                    aluno.setCursos(Integer.parseInt(cursos));
-                    Users.add(aluno);
-                    Users.setCursosFeitos(0,43);
-
-                    if(documentSnapshot.getBoolean("adm") != null){
-                        if(documentSnapshot.getBoolean("adm") == true){
-                            Log.d("tag","é true");
-                        }else{
-                            Log.d("tag",documentSnapshot.getBoolean("adm").toString());
-
-                        }
+                        aluno.setNome(nome);
 
 
-                    }else{
-                        Log.d("tag",Users.getAlunoAtIndex(0).getNome());
+
+
+                        aluno.setTurno(turno);
+
+
+
+
+                    if(cursotext != null){
+                        aluno.setCursos(Integer.parseInt(cursos));
+
 
 
                     }
+
+
+                    Users.add(aluno);
+                    Users.setCursosFeitos(0,43);
+
+
 
 
 
